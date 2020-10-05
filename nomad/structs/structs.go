@@ -10655,7 +10655,7 @@ type ACLTokenUpsertResponse struct {
 // EEventStreamRequest is used to stream events from a servers
 // EventPublisher
 type EventStreamRequest struct {
-	Topics map[stream.Topic][]string
+	Topics map[Topic][]string
 	Index  int
 
 	QueryOptions
@@ -10684,6 +10684,22 @@ func (r *RpcError) Error() string {
 }
 
 type Topic string
+type Event struct {
+	Topic      Topic
+	Type       string
+	Key        string
+	FilterKeys []string
+	Index      uint64
+	Payload    interface{}
+}
+
+type Events struct {
+	Index  uint64
+	Events []Event
+}
+
+type Topic string
+
 type Event struct {
 	Topic      Topic
 	Type       string
